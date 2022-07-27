@@ -1,0 +1,48 @@
+<!--
+ * @Author: yangyanan 3288077283@qq.com
+ * @Date: 2022-06-28 11:08:57
+ * @LastEditors: yangyanan 3288077283@qq.com
+ * @LastEditTime: 2022-06-28 11:15:39
+ * @FilePath: /Engine/test/18.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whitted-style ray trace</title>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+</html>
+<script type="module">
+    import {createScene} from './js/18/createScene/index.js';
+    import {whittedStyleRayTraceProcessing} from './js/18/whittedStyleRayTraceProcessing/index.js';
+    import {drawColorSetToCanvas} from './js/18/drawColorSetToCanvas/index.js';
+    /**场景包含以下物体 **/
+    //眼睛 近平面和远平面
+    //要绘制的物体 --- 两个球（一个） 一个地面
+    //一个点光源
+    
+
+    //具体过程：
+    //从眼睛到呈像面的每个像素 发射光线
+    //针对每条光线做以下操作
+    //1:和场景里物体求交 --->根据递归获取焦点处的颜色
+    //;;;;
+    //2:吧颜色写进数组里 
+    //3:把颜色数组绘制到canvas上
+
+    const scene = createScene();
+    const colorArray = whittedStyleRayTraceProcessing(scene);
+    let canvas = drawColorSetToCanvas(colorArray, scene.size[0],scene.size[1]);
+    let box = document.getElementById('box');
+    box.appendChild(canvas);
+
+   
+</script>
